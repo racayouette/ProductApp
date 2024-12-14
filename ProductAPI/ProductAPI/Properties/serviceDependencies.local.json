@@ -1,8 +1,3 @@
 {
-  "dependencies": {
-    "identityapp1": {
-      "connectionInfo": "App registration: ProductApp, Tenant: Brians Outlet LLC (briansoutlet.com - Microsoft Entra ID)",
-      "type": "identityapp.default"
-    }
-  }
+  "dependencies": {}
 }

@@ -3,12 +3,10 @@ using ProductAPI.Entities;
 
 namespace ProductAPI.Data
 {
-
     public class DataContext(DbContextOptions options) : DbContext(options)
     {
         public required DbSet<Entities.AppUser> Users { get; set; }
         public required DbSet<Entities.Product> Products { get; set; }
-
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,89 +18,89 @@ namespace ProductAPI.Data
                 {
                     Id = 1,
                     ProductName = "Apple AirPods Pro (2nd Generation)",
-                    Price = 249.99m,
-                    ImageUrl = "https://m.media-amazon.com/images/I/41Lg9iTcsDL._AC_SL1000_.jpg",
-                    ProductUrl = "https://www.amazon.com/dp/B0BD7DHHJ4"
+                    Price = 199.99m,
+                    ImageUrl = "https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SX522_.jpg",
+                    ProductUrl = "https://www.amazon.com/dp/B0D1XD1ZV3"
                 },
                 new Product
                 {
                     Id = 2,
                     ProductName = "Sony WH-1000XM5 Noise Cancelling Headphones",
-                    Price = 348.00m,
-                    ImageUrl = "https://m.media-amazon.com/images/I/91zCwJq2trL._AC_SL1500_.jpg",
-                    ProductUrl = "https://www.amazon.com/dp/B09JZ5LR8M"
+                    Price = 298.00m,
+                    ImageUrl = "https://m.media-amazon.com/images/I/51aXvjzcukL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+                    ProductUrl = "https://www.amazon.com/dp/B09XS7JWHH"
                 },
                 new Product
                 {
                     Id = 3,
                     ProductName = "Samsung Galaxy S23 Ultra",
-                    Price = 1199.99m,
-                    ImageUrl = "https://m.media-amazon.com/images/I/91g1MwQswsL._AC_SL1500_.jpg",
-                    ProductUrl = "https://www.amazon.com/dp/B0BN4N1NVK"
+                    Price = 1149.97m,
+                    ImageUrl = "https://m.media-amazon.com/images/I/71HtN4qqLZL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+                    ProductUrl = "https://www.amazon.com/dp/B0BLP2Y34S"
                 },
                 new Product
                 {
                     Id = 4,
                     ProductName = "Fitbit Charge 5 Fitness Tracker",
-                    Price = 129.95m,
-                    ImageUrl = "https://m.media-amazon.com/images/I/71hZlxQvf5L._AC_SL1500_.jpg",
-                    ProductUrl = "https://www.amazon.com/dp/B097R8FRF7"
+                    Price = 119.95m,
+                    ImageUrl = "https://m.media-amazon.com/images/I/61wn2jfhBkL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+                    ProductUrl = "https://www.amazon.com/dp/B0CC63GZ3R"
                 },
                 new Product
                 {
                     Id = 5,
                     ProductName = "Ninja Foodi 9-in-1 Pressure Cooker",
-                    Price = 199.99m,
-                    ImageUrl = "https://m.media-amazon.com/images/I/91g9h2yEn7L._AC_SL1500_.jpg",
-                    ProductUrl = "https://www.amazon.com/dp/B08QV5LBHT"
+                    Price = 89.99m,
+                    ImageUrl = "https://m.media-amazon.com/images/I/71GhytEjuYL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+                    ProductUrl = "https://www.amazon.com/dp/B0CDHP76FP"
                 },
                 new Product
                 {
                     Id = 6,
                     ProductName = "Bose QuietComfort 45 Bluetooth Headphones",
                     Price = 329.00m,
-                    ImageUrl = "https://m.media-amazon.com/images/I/91nK8fXcY9L._AC_SL1500_.jpg",
-                    ProductUrl = "https://www.amazon.com/dp/B097J2DGG4"
+                    ImageUrl = "https://m.media-amazon.com/images/I/61JY8Eci-LL._AC_SX679_.jpg",
+                    ProductUrl = "https://www.amazon.com/dp/B0CCZ26B5V"
                 },
                 new Product
                 {
                     Id = 7,
                     ProductName = "Apple MacBook Air M2",
-                    Price = 1199.99m,
-                    ImageUrl = "https://m.media-amazon.com/images/I/81Po6RSeybL._AC_SL1500_.jpg",
-                    ProductUrl = "https://www.amazon.com/dp/B09Y3M7N6T"
+                    Price = 799.00m,
+                    ImageUrl = "https://m.media-amazon.com/images/I/719C6bJv8jL._AC_SX522_.jpg",
+                    ProductUrl = "https://www.amazon.com/dp/B0DLHCWH55"
                 },
                 new Product
                 {
                     Id = 8,
                     ProductName = "GoPro HERO11 Black Action Camera",
-                    Price = 399.00m,
-                    ImageUrl = "https://m.media-amazon.com/images/I/71YkttnQ9FL._AC_SL1500_.jp",
-                    ProductUrl = "https://www.amazon.com/dp/B09D7SZMFS"
+                    Price = 358.49m,
+                    ImageUrl = "https://m.media-amazon.com/images/I/81hqcAQdFSL._AC_SX679_.jpg",
+                    ProductUrl = "https://www.amazon.com/dp/B087HRMHXY"
                 },
                 new Product
                 {
                     Id = 9,
                     ProductName = "Amazon Echo (4th Gen)",
-                    Price = 99.99m,
-                    ImageUrl = "https://m.media-amazon.com/images/I/71m0kBejd1L._AC_SL1000_.jpg",
-                    ProductUrl = "https://www.amazon.com/dp/B07ZVJGZ9F"
+                    Price = 54.99m,
+                    ImageUrl = "https://m.media-amazon.com/images/I/81t8gScXClL._AC_SY300_SX300_.jpg",
+                    ProductUrl = "https://www.amazon.com/dp/B07XKF5RM3"
                 },
                 new Product
                 {
                     Id = 10,
                     ProductName = "LG 55-Inch 4K OLED TV",
-                    Price = 1496.99m,
-                    ImageUrl = "https://m.media-amazon.com/images/I/91YvSzYjS6L._AC_SL1500_.jpg",
-                    ProductUrl = "https://www.amazon.com/dp/B08GGVFV1H"
+                    Price = 1396.99m,
+                    ImageUrl = "https://m.media-amazon.com/images/I/71O7wgely5L.__AC_SY300_SX300_QL70_FMwebp_.jpg",
+                    ProductUrl = "https://www.amazon.com/dp/B0BVXF72HV"
                 },
                 new Product
                 {
                     Id = 11,
                     ProductName = "Sony PlayStation 5 Console",
-                    Price = 499.99m,
-                    ImageUrl = "https://m.media-amazon.com/images/I/71Fj7YQEX6L._AC_SL1500_.jpg",
-                    ProductUrl = "https://www.amazon.com/dp/B08FC5L3RG"
+                    Price = 775.00m,
+                    ImageUrl = "https://m.media-amazon.com/images/I/61VTGdjik6L._SX522_.jpg",
+                    ProductUrl = "https://www.amazon.com/dp/B0CNV1DTCX"
                 }
             );
 
@@ -135,6 +133,4 @@ namespace ProductAPI.Data
             );
         }
     }
-
-
 }

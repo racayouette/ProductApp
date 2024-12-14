@@ -46,17 +46,17 @@ namespace ProductAPI.Data.Migrations
                 columns: new[] { "Id", "ImageUrl", "Price", "ProductName", "ProductUrl" },
                 values: new object[,]
                 {
-                    { 1, "https://m.media-amazon.com/images/I/41Lg9iTcsDL._AC_SL1000_.jpg", 249.99m, "Apple AirPods Pro (2nd Generation)", "https://www.amazon.com/dp/B0BD7DHHJ4" },
-                    { 2, "https://m.media-amazon.com/images/I/91zCwJq2trL._AC_SL1500_.jpg", 348.00m, "Sony WH-1000XM5 Noise Cancelling Headphones", "https://www.amazon.com/dp/B09JZ5LR8M" },
-                    { 3, "https://m.media-amazon.com/images/I/91g1MwQswsL._AC_SL1500_.jpg", 1199.99m, "Samsung Galaxy S23 Ultra", "https://www.amazon.com/dp/B0BN4N1NVK" },
-                    { 4, "https://m.media-amazon.com/images/I/71hZlxQvf5L._AC_SL1500_.jpg", 129.95m, "Fitbit Charge 5 Fitness Tracker", "https://www.amazon.com/dp/B097R8FRF7" },
-                    { 5, "https://m.media-amazon.com/images/I/91g9h2yEn7L._AC_SL1500_.jpg", 199.99m, "Ninja Foodi 9-in-1 Pressure Cooker", "https://www.amazon.com/dp/B08QV5LBHT" },
-                    { 6, "https://m.media-amazon.com/images/I/91nK8fXcY9L._AC_SL1500_.jpg", 329.00m, "Bose QuietComfort 45 Bluetooth Headphones", "https://www.amazon.com/dp/B097J2DGG4" },
-                    { 7, "https://m.media-amazon.com/images/I/81Po6RSeybL._AC_SL1500_.jpg", 1199.99m, "Apple MacBook Air M2", "https://www.amazon.com/dp/B09Y3M7N6T" },
-                    { 8, "https://m.media-amazon.com/images/I/71YkttnQ9FL._AC_SL1500_.jp", 399.00m, "GoPro HERO11 Black Action Camera", "https://www.amazon.com/dp/B09D7SZMFS" },
-                    { 9, "https://m.media-amazon.com/images/I/71m0kBejd1L._AC_SL1000_.jpg", 99.99m, "Amazon Echo (4th Gen)", "https://www.amazon.com/dp/B07ZVJGZ9F" },
-                    { 10, "https://m.media-amazon.com/images/I/91YvSzYjS6L._AC_SL1500_.jpg", 1496.99m, "LG 55-Inch 4K OLED TV", "https://www.amazon.com/dp/B08GGVFV1H" },
-                    { 11, "https://m.media-amazon.com/images/I/71Fj7YQEX6L._AC_SL1500_.jpg", 499.99m, "Sony PlayStation 5 Console", "https://www.amazon.com/dp/B08FC5L3RG" }
+                    { 1, "https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SX522_.jpg", 199.99m, "Apple AirPods Pro (2nd Generation)", "https://www.amazon.com/dp/B0D1XD1ZV3" },
+                    { 2, "https://m.media-amazon.com/images/I/51aXvjzcukL.__AC_SX300_SY300_QL70_FMwebp_.jpg", 298.00m, "Sony WH-1000XM5 Noise Cancelling Headphones", "https://www.amazon.com/dp/B09XS7JWHH" },
+                    { 3, "https://m.media-amazon.com/images/I/71HtN4qqLZL.__AC_SX300_SY300_QL70_FMwebp_.jpg", 1149.97m, "Samsung Galaxy S23 Ultra", "https://www.amazon.com/dp/B0BLP2Y34S" },
+                    { 4, "https://m.media-amazon.com/images/I/61wn2jfhBkL.__AC_SX300_SY300_QL70_FMwebp_.jpg", 119.95m, "Fitbit Charge 5 Fitness Tracker", "https://www.amazon.com/dp/B0CC63GZ3R" },
+                    { 5, "https://m.media-amazon.com/images/I/71GhytEjuYL.__AC_SX300_SY300_QL70_FMwebp_.jpg", 89.99m, "Ninja Foodi 9-in-1 Pressure Cooker", "https://www.amazon.com/dp/B0CDHP76FP" },
+                    { 6, "https://m.media-amazon.com/images/I/61JY8Eci-LL._AC_SX679_.jpg", 329.00m, "Bose QuietComfort 45 Bluetooth Headphones", "https://www.amazon.com/dp/B0CCZ26B5V" },
+                    { 7, "https://m.media-amazon.com/images/I/719C6bJv8jL._AC_SX522_.jpg", 799.00m, "Apple MacBook Air M2", "https://www.amazon.com/dp/B0DLHCWH55" },
+                    { 8, "https://m.media-amazon.com/images/I/81hqcAQdFSL._AC_SX679_.jpg", 358.49m, "GoPro HERO11 Black Action Camera", "https://www.amazon.com/dp/B087HRMHXY" },
+                    { 9, "https://m.media-amazon.com/images/I/81t8gScXClL._AC_SY300_SX300_.jpg", 54.99m, "Amazon Echo (4th Gen)", "https://www.amazon.com/dp/B07XKF5RM3" },
+                    { 10, "https://m.media-amazon.com/images/I/71O7wgely5L.__AC_SY300_SX300_QL70_FMwebp_.jpg", 1396.99m, "LG 55-Inch 4K OLED TV", "https://www.amazon.com/dp/B0BVXF72HV" },
+                    { 11, "https://m.media-amazon.com/images/I/61VTGdjik6L._SX522_.jpg", 775.00m, "Sony PlayStation 5 Console", "https://www.amazon.com/dp/B0CNV1DTCX" }
                 });
 
             migrationBuilder.InsertData(

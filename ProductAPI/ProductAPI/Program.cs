@@ -23,6 +23,7 @@ namespace ProductAPI
             {
                 opt.UseSqlServer("Server=DESKTOP-GE1ITJU;Database=ProductDB;User Id=racayouette; Password=Welcome123!;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;");
             });
+            builder.Services.AddCors();
 
             var app = builder.Build();
 
@@ -34,6 +35,9 @@ namespace ProductAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
+                .WithOrigins("http://localhost:4200", "https://localhost:4200"));
 
             app.MapControllers();
 

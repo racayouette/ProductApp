@@ -19,12 +19,12 @@ namespace ProductAPI.Controllers
 
         // /api/users/1
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers(int id)
+        public async Task<ActionResult<AppUser>> GetUsers(int id)
         {
             var user = await context.Users.FindAsync(id);
             return user == null ?
-                (ActionResult<IEnumerable<AppUser>>)NotFound() :
-                (ActionResult<IEnumerable<AppUser>>)Ok(user);
+                (ActionResult<AppUser>)NotFound() :
+                (ActionResult<AppUser>)Ok(user);
         }
     }
 }

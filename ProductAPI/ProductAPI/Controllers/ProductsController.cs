@@ -19,12 +19,12 @@ namespace ProductAPI.Controllers
 
         // /api/product/1
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts(int id)
+        public async Task<ActionResult<Product>> GetProducts(int id)
         {
             var product = await context.Products.FindAsync(id);
             return product == null ?
-                (ActionResult<IEnumerable<Product>>)NotFound() :
-                (ActionResult<IEnumerable<Product>>)Ok(product);
+                (ActionResult<Product>)NotFound() :
+                (ActionResult<Product>)Ok(product);
         }
     }
 }

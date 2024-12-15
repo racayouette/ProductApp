@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace ProductAPI
 {
@@ -13,15 +14,20 @@ namespace ProductAPI
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
-                    Title = "My API",
+                    Title = "ProductAPI",
                     Version = "v1",
-                    Description = "A simple example API"
+                    Description = "A simple example to learning"
                 });
             });
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddDbContext<Data.DataContext>(opt =>
             {
+                // TODO: encrypt password and store in the appsettings.json
                 opt.UseSqlServer("Server=DESKTOP-GE1ITJU;Database=ProductDB;User Id=racayouette; Password=Welcome123!;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;");
+                
+                // use this to ignore warning when updating the database migration error cause with .net 9 bug - 2024-12-14
+                // https://github.com/dotnet/efcore/issues/34431
+                opt.ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning));
             });
             builder.Services.AddCors();
 

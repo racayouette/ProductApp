@@ -5,10 +5,9 @@ using ProductAPI.Entities;
 
 namespace ProductAPI.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProductsController(DataContext context) : ControllerBase
+    public class ProductsController(DataContext context) : BaseApiController
     {
+        // /api/Products
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
@@ -17,9 +16,9 @@ namespace ProductAPI.Controllers
 
         }
 
-        // /api/product/1
+        // /api/products/1
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<Product>> GetProducts(int id)
+        public async Task<ActionResult<Product>> GetProduct(int id)
         {
             var product = await context.Products.FindAsync(id);
             return product == null ?

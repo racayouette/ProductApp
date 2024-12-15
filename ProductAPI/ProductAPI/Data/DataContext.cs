@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductAPI.Entities;
+using ProductAPI.SecretHasher;
 
 namespace ProductAPI.Data
 {
@@ -108,29 +109,36 @@ namespace ProductAPI.Data
                 new AppUser
                 {
                     Id = 1,
-                    UserName = "Robert"
+                    UserName = "robert",
+                    PasswordHash = ProtectPassword.Hash("Robert$123"),
                 },
                 new AppUser
                 {
                     Id = 2,
-                    UserName = "Sonia"
+                    UserName = "sonia",
+                    PasswordHash = ProtectPassword.Hash("Sonia$123"),
+
                 },
                 new AppUser
                 {
                     Id = 3,
-                    UserName = "Ethan"
+                    UserName = "ethan",
+                    PasswordHash = ProtectPassword.Hash("Ethan$123"),
                 },
                 new AppUser
                 {
                     Id = 4,
-                    UserName = "Brian"
+                    UserName = "brian",
+                    PasswordHash = ProtectPassword.Hash("Brian$123"),
                 },
                 new AppUser
                 {
                     Id = 5,
-                    UserName = "Samantha"
+                    UserName = "samantha",
+                    PasswordHash = ProtectPassword.Hash("Samantha$123"),
                 }
             );
         }
     }
 }
+

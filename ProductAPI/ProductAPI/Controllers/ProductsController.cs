@@ -9,11 +9,47 @@ namespace ProductAPI.Controllers
     {
         // /api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<PagedResult<Product>> GetProducts(string parms)
         {
-            var product = await context.Products.ToListAsync();
-            return Ok(product);
+            var splitter = parms.Split(':');
+            var pageNumber = int.Parse(splitter[0]);
+            var pageSize = int.Parse(splitter[1]);
+            var origPageNumber = pageNumber;
+            var query = context.Set<Product>().AsQueryable();
+         
+            if (pageSize == 0)
+            {
+                pageSize = 5;
+            }
+            var skip = (pageNumber) * pageSize;
+            var take = pageSize;
 
+            var products = await query
+           .Skip(skip)
+           .Take(take)
+           .ToListAsync();
+
+            var totalItems = await query.CountAsync();
+
+            var pagedResult = new PagedResult<Product>
+            {
+                Items = products,
+                TotalItems = totalItems,
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalPages = (int)Math.Ceiling((double)totalItems / pageSize)
+            };
+
+            return pagedResult;
+        }
+
+        public class PagedResult<T>
+        {
+            public List<T> Items { get; set; }
+            public int TotalItems { get; set; }
+            public int PageNumber { get; set; }
+            public int PageSize { get; set; }
+            public int TotalPages { get; set; }
         }
 
         // /api/products/1

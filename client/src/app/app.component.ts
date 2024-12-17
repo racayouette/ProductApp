@@ -1,71 +1,98 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { AppService } from './app.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
+
+interface Post {
+  id: number;
+  title: string;
+  body: string;
+}
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatProgressSpinnerModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  http = inject(HttpClient);
-  title = 'ProductApp';
-  users: any;
+  displayedColumns: string[] = ['id', 'title', 'body', 'actions'];
+  dataSource = new MatTableDataSource<Post>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  /* lazy loading table */
-  displayedColumns: string[] = ['id', 'name', 'age'];
-  dataSource = new MatTableDataSource<any>();
-  totalRecords: number = 100; // total records (simulating from the server)
-  isLoadingResults: boolean = false;
+  constructor(private apiService: AppService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.http.get('https://localhost:5000/api/Users').subscribe({
-      next: (response) => (this.users = response),
-      error: (error) => console.log(error),
-      complete: () => console.log('Request has completed'),
+    this.loadPosts();
+  }
+
+  loadPosts(): void {
+    this.apiService.getPosts().subscribe((data) => {
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  // Open dialog to create or edit post
+  openDialog(post?: Post): void {
+    const dialogRef = this.dialog.open(PostDialogComponent, {
+      data: post,
     });
 
-    this.loadData();
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (post) {
+          this.apiService.updatePost(result).subscribe(() => this.loadPosts());
+        } else {
+          this.apiService.createPost(result).subscribe(() => this.loadPosts());
+        }
+      }
+    });
   }
 
-  // Simulate lazy loading of data from an API or server
-  loadData() {
-    this.isLoadingResults = true;
-
-    // Simulate a delay (e.g., fetching data from an API)
-    setTimeout(() => {
-      const data = this.generateData(
-        this.paginator.pageIndex,
-        this.paginator.pageSize
-      );
-      this.dataSource.data = data;
-      this.isLoadingResults = false;
-    }, 1000);
-  }
-
-  // Simulate data generation based on pagination
-  generateData(pageIndex: number, pageSize: number) {
-    const data = [];
-    const start = pageIndex * pageSize;
-    const end = start + pageSize;
-    for (let i = start; i < end; i++) {
-      data.push({
-        id: i + 1,
-        name: `Name ${i + 1}`,
-        age: 20 + Math.floor(Math.random() * 40),
-      });
+  // Delete a post
+  deletePost(id: number): void {
+    if (confirm('Are you sure you want to delete this post?')) {
+      this.apiService.deletePost(id).subscribe(() => this.loadPosts());
     }
-    return data;
   }
+}
 
-  // Handle page changes
-  onPageChange(event: any) {
-    this.loadData();
+// Dialog component for adding and editing posts
+@Component({
+  selector: 'post-dialog',
+  template: `
+    <h1 mat-dialog-title>{{ data ? 'Edit Post' : 'Create Post' }}</h1>
+    <div mat-dialog-content>
+      <mat-form-field>
+        <mat-cell>Title</mat-cell>
+        <input matInput [(ngModel)]="post.title" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-cell>Body</mat-cell>
+        <textarea matInput [(ngModel)]="post.body"></textarea>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="dialogRef.close()">Cancel</button>
+      <button mat-button (click)="dialogRef.close(post)">Save</button>
+    </div>
+  `,
+})
+export class PostDialogComponent {
+  post: Post = { id: 0, title: '', body: '' };
+
+  constructor(
+    public dialogRef: MatDialogRef<PostDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Post | undefined
+  ) {
+    if (data) {
+      this.post = { ...data };
+    }
   }
 }

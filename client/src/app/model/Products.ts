@@ -1,9 +1,3 @@
-// export interface Products {
-//   id: number;
-//   productName: string;
-//   price: string;
-// }
-
 export interface Products {
   items: Item[]
   totalItems: number

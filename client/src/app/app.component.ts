@@ -1,83 +1,38 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
-import { AfterViewInit, Component, inject, OnInit, viewChild, ViewChild } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatTable, MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Observable } from 'rxjs';
-import { SortDirection } from '@angular/material/sort';
+import { AfterViewInit, Component, EventEmitter, inject, OnInit, Output, viewChild, ViewChild } from '@angular/core';
 import { Products } from './model/Products';
-import { PageEvent, MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {FormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
+import { ProductListComponent } from "./product-list/product-list.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, 
-    HttpClientModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatSlideToggleModule,
-    MatPaginatorModule,
-    MatTableModule
-  ],
+  imports: [HttpClientModule,
+    ProductListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit, AfterViewInit {
- 
-  title = 'fetchdata';
+export class AppComponent implements AfterViewInit {
+
   httpClient = inject(HttpClient);
   data: Products[] = []; 
-  columnsToDisplay = ['id', 'imageUrl', 'productName', 'price'];
-  dataSource = new MatTableDataSource(this.data);
-  pageSize = 5;
-  pageIndex: number = 0;
+  length: number = this.data.length;
+  pageSize: number = 5;
 
-  @ViewChild(MatPaginator, {static: false})  paginator!: MatPaginator;
+  ngAfterViewInit(): void {
+    this.fetchData();
+  }
 
-    // begin pagination
-    length: number = this.data.length;
-    
-    pageSizeOptions = [5, 10, 25];
-  
-    hidePageSize = false;
-    showPageSizeOptions = true;
-    showFirstLastButtons = true;
-    disabled = false;
-  
-    pageEvent: PageEvent = new PageEvent;
-
-    ngOnInit(): void {
-      this.pageIndex = 0;
-      this.dataSource.paginator = this.paginator;
-      this.fetchData(0, this.pageSize);
-      this.dataSource = new MatTableDataSource(this.data);
-    }
-    
-    ngAfterViewInit(): void {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource = new MatTableDataSource(this.data);
-    }
-  
-    handlePageEvent(e: PageEvent) {
-      this.pageEvent = e;
-      this.length = e.length;
-      this.pageSize = e.pageSize;
-      this.pageIndex = e.pageIndex;
-      this.fetchData(e.pageIndex, e.pageSize);
-    }
-  
-   fetchData(index: number, size: number) {
-    
+    // fetchData(index: number, size: number) {
     // HTTP GET request with pagination parameters
-    const params = new HttpParams()
-      .set('parms', index.toString() + ':' + size.toString());
+    // const params = new HttpParams()
+    //      .set('parms', index.toString() + ':' + size.toString());
+    // this.httpClient
+    //.get<any>('https://localhost:5000/api/Products', { params })
+    
+    fetchData() {
     this.httpClient
-    .get<any>('https://localhost:5000/api/Products', { params })
+    .get<any>('https://localhost:5000/api/Products2')
     .subscribe({
       next: (response) => {
         this.data = response.items; // Assign the data for current page
@@ -88,9 +43,9 @@ export class AppComponent implements OnInit, AfterViewInit {
         console.error('Error fetching data:', error);
       },
       complete: () => {
+        // TODO: something here
         // this.isLoadingResults = false;
       },
     });
   }
 }
-

@@ -1,0 +1,70 @@
+<section class="intro">
+  <div class="bg-image h-100" style="background-color: #f5f7fa;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 500px">
+
+                  <mat-paginator #paginator
+                      class="demo-paginator"
+                      (page)="handlePageEvent($event)"
+                      [length]="length"
+                      [pageSize]="pageSize"
+                      [disabled]="disabled"
+                      [showFirstLastButtons]="showFirstLastButtons"
+                      [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+                      [hidePageSize]="hidePageSize"
+                      [pageIndex]="pageIndex"
+                      aria-label="Select page">
+                  </mat-paginator>
+                  <div class="mat-elevation-z8 wrap">
+                    <mat-table  [dataSource]="this.getdata">
+                      <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+                        <mat-cell *matCellDef="let data"> {{data.id}} </mat-cell>
+                      </ng-container>
+
+                      <ng-container matColumnDef="imageUrl">
+                        <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
+                        <mat-cell *matCellDef="let data"> <img style="float: left; padding: 30px 30px 30px 30px;" [src]="data.imageUrl" width="100" /></mat-cell>
+                      </ng-container>
+
+                      <ng-container matColumnDef="productName">
+                        <mat-header-cell mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
+                        <mat-cell *matCellDef="let data"> {{data.productName}} </mat-cell>
+                      </ng-container>
+
+                      <ng-container matColumnDef="price">
+                        <mat-header-cell mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+                        <mat-cell *matCellDef="let data"> {{data.price | currency:'USD'}} </mat-cell>
+                      </ng-container>
+                      
+                      <mat-header-row *matHeaderRowDef="columnsToDisplay" [ngClass]="{blue: true}"></mat-header-row >
+                      <mat-row *matRowDef="let myRowData; let even = even; columns: columnsToDisplay" class="row-hover" [ngClass]="{gray: even}"></mat-row>
+                    </mat-table>
+
+                    <mat-paginator #paginator
+                                  class="demo-paginator"
+                                  (page)="handlePageEvent($event)"
+                                  [length]="length"
+                                  [pageSize]="pageSize"
+                                  [disabled]="disabled"
+                                  [showFirstLastButtons]="showFirstLastButtons"
+                                  [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+                                  [hidePageSize]="hidePageSize"
+                                  [pageIndex]="pageIndex"
+                                  aria-label="Select page">
+                    </mat-paginator>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

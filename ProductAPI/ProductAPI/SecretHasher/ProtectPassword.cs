@@ -52,15 +52,5 @@ namespace ProductAPI.SecretHasher
             );
             return CryptographicOperations.FixedTimeEquals(inputHash, hash);
         }
-
-        /*
-             // Hash:
-            string password = "...";
-            string hashed = SecretHasher.Hash(password);
-
-            // Verify:
-            string enteredPassword = "...";
-            bool isPasswordCorrect = SecretHasher.Verify(enteredPassword, hashed);
-         */
     }
 }

@@ -14,7 +14,6 @@ namespace ProductAPI.Controllers
             var splitter = parms.Split(':');
             var pageNumber = int.Parse(splitter[0]);
             var pageSize = int.Parse(splitter[1]);
-            var origPageNumber = pageNumber;
             var query = context.Set<Product>().AsQueryable();
          
             if (pageSize == 0)
@@ -43,14 +42,14 @@ namespace ProductAPI.Controllers
             return pagedResult;
         }
 
-        public class PagedResult<T>
-        {
-            public List<T> Items { get; set; }
-            public int TotalItems { get; set; }
-            public int PageNumber { get; set; }
-            public int PageSize { get; set; }
-            public int TotalPages { get; set; }
-        }
+        //public class PagedResult<T>
+        //{
+        //    public List<T> Items { get; set; }
+        //    public int TotalItems { get; set; }
+        //    public int PageNumber { get; set; }
+        //    public int PageSize { get; set; }
+        //    public int TotalPages { get; set; }
+        //}
 
         // /api/products/1
         [HttpGet("{id:int}")]
